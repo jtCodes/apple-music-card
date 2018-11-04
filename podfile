@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'apple-music-card' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for apple-music-card
+   pod 'SnapKit', '~> 4.0.0'
+  target 'apple-music-cardTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'apple-music-cardUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
