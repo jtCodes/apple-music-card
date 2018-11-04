@@ -1,4 +1,4 @@
-# Apple Music Card Transition Recreated
+# Apple Music Card Transition
 Apple Music now playing card transition recreated using auto-layout constraints.
 
 ![Demo CountPages alpha](https://thumbs.gfycat.com/LegitimateLoathsomeKoalabear-size_restricted.gif)
