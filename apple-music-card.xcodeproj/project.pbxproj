@@ -11,12 +11,16 @@
 		4974E060681320A991DCC314 /* Pods_apple_music_cardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B97CBD89648ABF581C1EC9B6 /* Pods_apple_music_cardUITests.framework */; };
 		58E2847638263B57EB3C2D04 /* Pods_apple_music_card.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3A3579736D8D949C6100D0 /* Pods_apple_music_card.framework */; };
 		ED2B7D66218F8577004FEB7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B7D65218F8577004FEB7A /* AppDelegate.swift */; };
-		ED2B7D68218F8577004FEB7A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B7D67218F8577004FEB7A /* ViewController.swift */; };
+		ED2B7D68218F8577004FEB7A /* MusicBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B7D67218F8577004FEB7A /* MusicBrowserViewController.swift */; };
 		ED2B7D6B218F8577004FEB7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED2B7D69218F8577004FEB7A /* Main.storyboard */; };
 		ED2B7D6D218F8578004FEB7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2B7D6C218F8578004FEB7A /* Assets.xcassets */; };
 		ED2B7D70218F8578004FEB7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED2B7D6E218F8578004FEB7A /* LaunchScreen.storyboard */; };
 		ED2B7D7B218F8579004FEB7A /* apple_music_cardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B7D7A218F8578004FEB7A /* apple_music_cardTests.swift */; };
 		ED2B7D86218F8579004FEB7A /* apple_music_cardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B7D85218F8579004FEB7A /* apple_music_cardUITests.swift */; };
+		ED2B7D94218F86D0004FEB7A /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B7D93218F86D0004FEB7A /* AudioPlayerViewController.swift */; };
+		ED2B7D96218F86EB004FEB7A /* ReusableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B7D95218F86EB004FEB7A /* ReusableTableView.swift */; };
+		ED2B7D98218F86FF004FEB7A /* SongTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B7D97218F86FF004FEB7A /* SongTableCell.swift */; };
+		ED2B7D9A218F8716004FEB7A /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2B7D99218F8716004FEB7A /* ThemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +51,7 @@
 		E9F926B7F0681A1AE35F833D /* Pods-apple-music-cardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apple-music-cardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-apple-music-cardTests/Pods-apple-music-cardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED2B7D62218F8577004FEB7A /* apple-music-card.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "apple-music-card.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2B7D65218F8577004FEB7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ED2B7D67218F8577004FEB7A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ED2B7D67218F8577004FEB7A /* MusicBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBrowserViewController.swift; sourceTree = "<group>"; };
 		ED2B7D6A218F8577004FEB7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED2B7D6C218F8578004FEB7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED2B7D6F218F8578004FEB7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +62,10 @@
 		ED2B7D81218F8579004FEB7A /* apple-music-cardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "apple-music-cardUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2B7D85218F8579004FEB7A /* apple_music_cardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apple_music_cardUITests.swift; sourceTree = "<group>"; };
 		ED2B7D87218F8579004FEB7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED2B7D93218F86D0004FEB7A /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
+		ED2B7D95218F86EB004FEB7A /* ReusableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTableView.swift; sourceTree = "<group>"; };
+		ED2B7D97218F86FF004FEB7A /* SongTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableCell.swift; sourceTree = "<group>"; };
+		ED2B7D99218F8716004FEB7A /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		EE1E55367F68CDED51C4F1BD /* Pods-apple-music-card.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-apple-music-card.debug.xcconfig"; path = "Pods/Target Support Files/Pods-apple-music-card/Pods-apple-music-card.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,7 +133,11 @@
 			isa = PBXGroup;
 			children = (
 				ED2B7D65218F8577004FEB7A /* AppDelegate.swift */,
-				ED2B7D67218F8577004FEB7A /* ViewController.swift */,
+				ED2B7D67218F8577004FEB7A /* MusicBrowserViewController.swift */,
+				ED2B7D93218F86D0004FEB7A /* AudioPlayerViewController.swift */,
+				ED2B7D95218F86EB004FEB7A /* ReusableTableView.swift */,
+				ED2B7D97218F86FF004FEB7A /* SongTableCell.swift */,
+				ED2B7D99218F8716004FEB7A /* ThemeManager.swift */,
 				ED2B7D69218F8577004FEB7A /* Main.storyboard */,
 				ED2B7D6C218F8578004FEB7A /* Assets.xcassets */,
 				ED2B7D6E218F8578004FEB7A /* LaunchScreen.storyboard */,
@@ -391,8 +403,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED2B7D68218F8577004FEB7A /* ViewController.swift in Sources */,
+				ED2B7D98218F86FF004FEB7A /* SongTableCell.swift in Sources */,
+				ED2B7D96218F86EB004FEB7A /* ReusableTableView.swift in Sources */,
+				ED2B7D68218F8577004FEB7A /* MusicBrowserViewController.swift in Sources */,
 				ED2B7D66218F8577004FEB7A /* AppDelegate.swift in Sources */,
+				ED2B7D9A218F8716004FEB7A /* ThemeManager.swift in Sources */,
+				ED2B7D94218F86D0004FEB7A /* AudioPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
