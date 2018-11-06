@@ -19,4 +19,5 @@ Fast present/dismiss
 ![Demo CountPages alpha](https://thumbs.gfycat.com/FluffyPrestigiousHedgehog-size_restricted.gif)
 
 ## TODO
-Further improve animations by converting UIView.Animate to UIViewPropertyAnimator
+Further improve animations by converting UIView.Animate to UIViewPropertyAnimator:
+https://developer.apple.com/videos/play/wwdc2017/230/
