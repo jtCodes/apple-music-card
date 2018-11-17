@@ -55,7 +55,6 @@ class AudioPlayerViewController: UIViewController {
     
     let viewContainer: UIView = {
         let view = UIView()
-        //        view.clipsToBounds = true
         view.layer.cornerRadius = 12
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.backgroundColor = .purple
@@ -132,29 +131,14 @@ class AudioPlayerViewController: UIViewController {
         
         parentVC.delegate = self
         
-        expandedNowPlayingImageTopOffset = collapsedNowPlayingHeight - collapsedNowPlayingImageTopOffset
-        expandedNowPlayingImageCenterOffset = -view.frame.width / 2.5
-        expandedNowPlayingImageWidth = view.frame.width * 0.65
-        expandedNowPlayingImageLeftOffset = (view.frame.width - expandedNowPlayingImageWidth) / 2
-        
-        collapsedNowPlayingImageWidth = collapsedNowPlayingHeight * 0.70
-        collapsedNowPlayingImageTopOffset = collapsedNowPlayingHeight * 0.15
-        collapsedNowPlayingImageLeftOffset = view.frame.width * 0.05
+        setUpExpandedNowPlayingCardProps()
+        setUpCollapsedNowPlayingCardProps()
         
         nowPlayingSongTitleLabelLeftOffset = collapsedNowPlayingImageLeftOffset * 2 + collapsedNowPlayingImageWidth
         
         view.backgroundColor = UIColor.black.withAlphaComponent(0)
         
-        view.addSubview(nowPlayingCardView)
-        nowPlayingCardView.addSubview(collapsedControlsContainer)
-        nowPlayingCardView.addSubview(expandedControlsContainer)
-        expandedControlsContainer.addSubview(expandedSongTitleLabel)
-        expandedControlsContainer.addSubview(expandedPlayPauseButton)
-        expandedPlayPauseButton.addTarget(self, action: #selector(playPauseButtonOnTap), for: .touchUpInside)
-        collapsedControlsContainer.addSubview(collapsedSongTitleLabel)
-        collapsedControlsContainer.addSubview(collapsedPlayPauseButton)
-        collapsedPlayPauseButton.addTarget(self, action: #selector(playPauseButtonOnTap), for: .touchUpInside)
-        view.addSubview(nowPlayingImage)
+        addViewsAndGestures()
         
         self.updateViewConstraints()
         self.setNeedsStatusBarAppearanceUpdate()
@@ -186,6 +170,32 @@ class AudioPlayerViewController: UIViewController {
             print("paused")
         }
     }
+    
+    fileprivate func setUpExpandedNowPlayingCardProps() {
+        expandedNowPlayingImageTopOffset = collapsedNowPlayingHeight - collapsedNowPlayingImageTopOffset
+        expandedNowPlayingImageCenterOffset = -view.frame.width / 2.5
+        expandedNowPlayingImageWidth = view.frame.width * 0.65
+        expandedNowPlayingImageLeftOffset = (view.frame.width - expandedNowPlayingImageWidth) / 2
+    }
+    
+    fileprivate func setUpCollapsedNowPlayingCardProps() {
+        collapsedNowPlayingImageWidth = collapsedNowPlayingHeight * 0.70
+        collapsedNowPlayingImageTopOffset = collapsedNowPlayingHeight * 0.15
+        collapsedNowPlayingImageLeftOffset = view.frame.width * 0.05
+    }
+    
+    fileprivate func addViewsAndGestures() {
+        view.addSubview(nowPlayingCardView)
+        nowPlayingCardView.addSubview(collapsedControlsContainer)
+        nowPlayingCardView.addSubview(expandedControlsContainer)
+        expandedControlsContainer.addSubview(expandedSongTitleLabel)
+        expandedControlsContainer.addSubview(expandedPlayPauseButton)
+        expandedPlayPauseButton.addTarget(self, action: #selector(playPauseButtonOnTap), for: .touchUpInside)
+        collapsedControlsContainer.addSubview(collapsedSongTitleLabel)
+        collapsedControlsContainer.addSubview(collapsedPlayPauseButton)
+        collapsedPlayPauseButton.addTarget(self, action: #selector(playPauseButtonOnTap), for: .touchUpInside)
+        view.addSubview(nowPlayingImage)
+    }
 }
 
 extension AudioPlayerViewController: UIGestureRecognizerDelegate {
@@ -196,83 +206,14 @@ extension AudioPlayerViewController: UIGestureRecognizerDelegate {
 
 extension AudioPlayerViewController: MusicBrowserViewDelegate {
     func musicBrowserNowPlayingCardDidDrag(yTrans: CGFloat, isCollapsing: Bool) {
-        let translationPercent = (-yTrans / nowPlayingCardView.frame.height)
-        
-        if !isCollapsing {
-            nowPlayingImage.snp.updateConstraints { make in
-                let topOffsetPanProgress = collapsedNowPlayingImageTopOffset +
-                    translationPercent * (expandedNowPlayingImageTopOffset - collapsedNowPlayingImageTopOffset)
-                if topOffsetPanProgress <= expandedNowPlayingImageTopOffset {
-                    make.top.equalTo(nowPlayingCardView).offset(topOffsetPanProgress)
-                } else {
-                    make.top.equalTo(nowPlayingCardView).offset(expandedNowPlayingImageTopOffset)
-                }
-                
-                let widthPanProgress = collapsedNowPlayingImageWidth +
-                    translationPercent * (expandedNowPlayingImageWidth - collapsedNowPlayingImageWidth)
-                if widthPanProgress <= expandedNowPlayingImageWidth {
-                    make.width.equalTo(widthPanProgress)
-                } else {
-                    make.width.equalTo(expandedNowPlayingImageWidth)
-                }
-                
-                let leftOffsetPanProgress = collapsedNowPlayingImageLeftOffset +
-                    translationPercent * expandedNowPlayingImageLeftOffset
-                if leftOffsetPanProgress <= expandedNowPlayingImageLeftOffset {
-                    make.left.equalTo(nowPlayingCardView).offset(leftOffsetPanProgress)
-                } else {
-                    make.left.equalTo(nowPlayingCardView).offset(expandedNowPlayingImageLeftOffset)
-                }
-            }
-            collapsedControlsContainer.alpha = 1 - translationPercent * 3
-            expandedControlsContainer.alpha = translationPercent * 1
-            UIView.animate(withDuration: animationDuration, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
-        // for scaling the now playing views when panning to collapse, apple doesn't do this
-        //        else {
-        //            nowPlayingImage.snp.updateConstraints { make in
-        //                make.top.equalTo(nowPlayingCard).offset(expandedNowPlayingImageTopOffset +
-        //                    translationPercent * expandedNowPlayingImageTopOffset)
-        //                make.width.equalTo(expandedNowPlayingImageWidth +
-        //                    translationPercent * expandedNowPlayingImageWidth)
-        //                make.left.equalTo(nowPlayingCard).offset(expandedNowPlayingImageLeftOffset +
-        //                    translationPercent * expandedNowPlayingImageLeftOffset)
-        //            }
-        //        }
-        //        UIView.animate(withDuration: 0.15, animations: {
-        //            self.view.layoutIfNeeded()
-        //        })
         
     }
     
     func musicBrowserNowPlayingCardDragFailed() {
-        nowPlayingImage.snp.updateConstraints { make in
-            make.width.equalTo(collapsedNowPlayingImageWidth)
-            make.height.equalTo(nowPlayingImage.snp.width)
-            make.top.equalTo(nowPlayingCardView).offset(collapsedNowPlayingImageTopOffset)
-            make.left.equalTo(nowPlayingCardView).offset(collapsedNowPlayingImageLeftOffset)
-        }
-        self.view.layer.removeAllAnimations()
-        UIView.animate(withDuration: endintAnimationDuration, animations: {
-            self.view.layoutIfNeeded()
-            self.collapsedControlsContainer.alpha = 1
-        })
     }
     
     func musicBrowserNowPlayingCardDragEnded() {
-        nowPlayingImage.snp.updateConstraints { make in
-            make.width.equalTo(expandedNowPlayingImageWidth)
-            make.left.equalTo(nowPlayingCardView).offset(expandedNowPlayingImageLeftOffset)
-            make.top.equalTo(nowPlayingCardView).offset(expandedNowPlayingImageTopOffset)
-        }
-        self.view.layer.removeAllAnimations()
-        UIView.animate(withDuration: endintAnimationDuration, animations: {
-            self.view.layoutIfNeeded()
-            self.collapsedControlsContainer.alpha = 0
-            //            self.nowPlayingImage.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
-        })
+        
     }
 }
 
