@@ -28,7 +28,7 @@ class AudioPlayerViewController: UIViewController {
     weak var delegate: AudioPlayerViewDelegate!
     weak var parentVC: MusicBrowserViewController!
     
-    var player: AVAudioPlayer?
+    var player: MPMusicPlayerController?
     var playerState: String!
     
     var didSetupConstraints = false
@@ -140,6 +140,8 @@ class AudioPlayerViewController: UIViewController {
         
         addViewsAndGestures()
         
+        player = MPMusicPlayerController.applicationMusicPlayer
+        
         self.updateViewConstraints()
         self.setNeedsStatusBarAppearanceUpdate()
     }
@@ -148,7 +150,7 @@ class AudioPlayerViewController: UIViewController {
         print("playbutton press")
         if player != nil {
             var origImage: UIImage!
-            if (player?.isPlaying)! {
+            if (player?.playbackState == .playing) {
                 player?.pause()
                 origImage = UIImage(named: "play")
             } else {
@@ -219,26 +221,32 @@ extension AudioPlayerViewController: MusicBrowserViewDelegate {
 
 extension AudioPlayerViewController: ReusableTableViewDelegate {
     func reusableTableDidSelect(song: MPMediaItem) {
-        collapsedSongTitleLabel.text = song.title!
-        expandedSongTitleLabel.text = song.title!
+        collapsedSongTitleLabel.text = song.title
+        expandedSongTitleLabel.text = song.title
         nowPlayingSong = song
         nowPlayingImage.image = nowPlayingSong.artwork?.image(at: CGSize(width: expandedNowPlayingImageWidth, height: expandedNowPlayingImageWidth))
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            print("Playback OK")
-            try AVAudioSession.sharedInstance().setActive(true)
-            print("Session is Active")
-            player = try AVAudioPlayer(contentsOf: song.assetURL!, fileTypeHint: AVFileType.mp3.rawValue)
-            player!.play()
-            player!.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+        let mediaItemCollection = MPMediaItemCollection(items: [song])
+        
+        if let player = player {
+            player.setQueue(with: mediaItemCollection)
             
-            let origImage = UIImage(named: "pause")
-            let tintedImage = origImage?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            collapsedPlayPauseButton.setImage(tintedImage, for: .normal)
-            expandedPlayPauseButton.setImage(tintedImage, for: .normal)
-        } catch let error as NSError {
-            print("error: \(error.localizedDescription)")
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+                print("Playback OK")
+                try AVAudioSession.sharedInstance().setActive(true)
+                print("Session is Active")
+                
+                player.prepareToPlay()
+                player.play()
+                
+                let origImage = UIImage(named: "pause")
+                let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+                collapsedPlayPauseButton.setImage(tintedImage, for: .normal)
+                expandedPlayPauseButton.setImage(tintedImage, for: .normal)
+            } catch let error {
+                print("error: \(error.localizedDescription)")
+            }
         }
     }
 }

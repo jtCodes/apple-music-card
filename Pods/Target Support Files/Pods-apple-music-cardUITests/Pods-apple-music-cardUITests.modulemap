@@ -1,0 +1,6 @@
+framework module Pods_apple_music_cardUITests {
+  umbrella header "Pods-apple-music-cardUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
