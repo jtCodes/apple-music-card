@@ -249,13 +249,16 @@
 				TargetAttributes = {
 					ED2B7D61218F8577004FEB7A = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = "";
 					};
 					ED2B7D75218F8578004FEB7A = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = "";
 						TestTargetID = ED2B7D61218F8577004FEB7A;
 					};
 					ED2B7D80218F8579004FEB7A = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = "";
 						TestTargetID = ED2B7D61218F8577004FEB7A;
 					};
 				};
@@ -380,20 +383,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-apple-music-card/Pods-apple-music-card-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-apple-music-card/Pods-apple-music-card-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-apple-music-card/Pods-apple-music-card-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-apple-music-card/Pods-apple-music-card-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-apple-music-card/Pods-apple-music-card-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -585,9 +583,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5USU3QG354;
+				DEVELOPMENT_TEAM = GNHZ75W8G7;
 				INFOPLIST_FILE = "apple-music-card/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -605,9 +603,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5USU3QG354;
+				DEVELOPMENT_TEAM = GNHZ75W8G7;
 				INFOPLIST_FILE = "apple-music-card/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
